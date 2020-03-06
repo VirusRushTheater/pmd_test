@@ -2,11 +2,11 @@
 .vscode/
 Debug/
 Release/
-build/
+build
 third-party/*/lib/
 third-party/*/bin/
-lib/
-bin/
+lib
+bin
 *.suo
 *.user
 *.sln.docstates
