@@ -18,6 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+cmake_minimum_required( VERSION 3.9)
+
 project (pmd-engine-root)
 set (pmd-engine-root_VERSION_MAJOR  0)
 set (pmd-engine-root_VERSION_MINOR  1)
@@ -27,15 +29,14 @@ if(" ${CMAKE_SOURCE_DIR}" STREQUAL " ${CMAKE_BINARY_DIR}")
     message(FATAL_ERROR "FATAL: In-source builds are not allowed. Please create a separate directory for build files.")
 endif()
 
-cmake_minimum_required( VERSION 3.6 )
-
 # Lib and dir locations
 set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
 # Add all the CMake modules you find in the cmake-modules folder.
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake-modules/")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake-modules/")
+include ("${CMAKE_SOURCE_DIR}/cmake-modules/PackageOrGit.cmake")
 
 # Add support for C++11.
 if( COMPILER_SUPPORTS_CXX11 )
@@ -54,16 +55,8 @@ endif()
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-# Build Lodepng with C linkage.
-set(LODEPNG_BUILD_C_LIBRARY True CACHE BOOL "Building with C linkage" FORCE)
-add_subdirectory(third-party/lodepng)
+# Find or build every third party package.
+add_subdirectory(third-party)
 
-find_package(OpenAL REQUIRED)
-find_package(OpenGL REQUIRED)
-find_package(GLEW REQUIRED)
-find_package(GLFW REQUIRED)
-find_package(SDL2 REQUIRED)
-find_package(LibOgg REQUIRED)
-find_package(LibVorbis REQUIRED)
-
+# And build our source code.
 add_subdirectory(src)

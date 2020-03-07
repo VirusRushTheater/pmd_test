@@ -8,21 +8,20 @@ cmake_minimum_required( VERSION 3.6 )
 FILE (GLOB SOURCES "${CMAKE_SOURCE_DIR}/*/**.c")
 
 # And wrap everything on the main executable.
-# add_executable( pmd-engine ${SOURCES} )
+add_executable( pmd-engine ${SOURCES} )
 
-# include_directories(
-#     ${CMAKE_SOURCE_DIR}/inc
+include_directories(
+    ${CMAKE_SOURCE_DIR}/inc
 
-#     ${lodepng_SOURCE_DIR}
-    
-#     ${OPENAL_INCLUDE_DIR}
-#     ${OPENGL_INCLUDE_DIRS}
-#     ${GLEW_INCLUDE_DIRS}
-#     ${GLFW_INCLUDE_DIRS}
-#     ${SDL2_INCLUDE_DIRS}
-#     ${LIBOGG_INCLUDE_DIRS}
-#     ${LIBVORBIS_INCLUDE_DIRS}
-# )
+    ${lodepng_SOURCE_DIR}
+    ${OPENAL_INCLUDE_DIR}
+    ${OPENGL_INCLUDE_DIRS}
+    ${GLEW_INCLUDE_DIRS}
+    ${GLFW_INCLUDE_DIRS}
+    ${SDL2_INCLUDE_DIRS}
+    ${LIBOGG_INCLUDE_DIRS}
+    ${LIBVORBIS_INCLUDE_DIRS}
+)
 
 # target_link_libraries(
 #     pmd-engine

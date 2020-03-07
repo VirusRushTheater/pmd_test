@@ -1,9 +1,6 @@
 [submodule "third-party/lodepng"]
 	path = third-party/lodepng
 	url = https://github.com/VirusRushTheater/lodepng
-[submodule "third-party/glew"]
-	path = third-party/glew
-	url = https://github.com/nigels-com/glew.git
 [submodule "third-party/openal-soft"]
 	path = third-party/openal-soft
 	url = https://github.com/kcat/openal-soft.git
@@ -31,3 +28,6 @@
 [submodule "third-party/zlib"]
 	path = third-party/zlib
 	url = https://github.com/madler/zlib.git
+[submodule "third-party/glew-cmake"]
+	path = third-party/glew-cmake
+	url = https://github.com/Perlmint/glew-cmake.git
