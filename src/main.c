@@ -18,8 +18,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include <stdio.h>
-#include "game_common/game.h"
+#include "game/game.h"
 
 int main(int argc, char **argv)
 {
@@ -31,8 +30,8 @@ int main(int argc, char **argv)
     }
     Game_ShutDown(game);
 
-    printf("Press Any Key to Continue\n");
-    getchar();
+    //printf("Press Any Key to Continue\n");
+    //_getch();
 
-    return 0;
+    return EXIT_SUCCESS;
 }

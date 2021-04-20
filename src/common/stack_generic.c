@@ -18,8 +18,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include <string.h>
-
 #include "common/stack_error.h"
 #include "common/stack_generic.h"
 
@@ -28,9 +26,9 @@
 
 STACK_T *TEMPLATE(stack_new, STACK_T)(size_t capacity)
 {
-    STACK_T *stack = (STACK_T*) malloc(sizeof(*stack));
+    STACK_T *stack = malloc(sizeof(*stack));
     stack->capacity = capacity;
-    stack->data = (T*) malloc(stack->capacity * sizeof(T));
+    stack->data = malloc(stack->capacity * sizeof(T));
     stack->size = 0;
 
     if (!stack || !stack->data)
@@ -43,7 +41,7 @@ STACK_T *TEMPLATE(stack_new, STACK_T)(size_t capacity)
 void *TEMPLATE(stack_resize, STACK_T)(STACK_T *stack, size_t capacity)
 {
     stack->capacity = capacity;
-    T *temp = (T*) realloc(stack->data, sizeof(T) * stack->capacity);
+    T *temp = realloc(stack->data, sizeof(T) * stack->capacity);
 
     if (!temp)
     {
@@ -83,7 +81,7 @@ StackErrorCode TEMPLATE(stack_update, STACK_T)(STACK_T *stack)
 
     for (size_t i = 0; i < stack->size; i++)
     {
-        if (stack->data[i] != 0) // Find a non-empty slot
+        if (stack->data[i] != NULL) // Find a non-empty slot
         {
             STACK_PUSH(STACK_T, stack_temp, stack->data[i]);
         }
@@ -132,7 +130,7 @@ StackErrorCode TEMPLATE(stack_remove, STACK_T)(STACK_T *stack, T element)
     {
         if (stack->data[i] == element)
         {
-            stack->data[i] = 0;
+            stack->data[i] = NULL;
             StackErrorCode result = STACK_UPDATE(STACK_T, stack);
 
             if (result != STACK_SUCCESS)

@@ -22,7 +22,7 @@
 #ifndef _UTIL_H_
 #define _UTIL_H_
 
-#if defined(_MSC_VER)
+#ifdef _WIN32
 #include <direct.h>
 #include <io.h>
 #include <Windows.h>
@@ -35,6 +35,11 @@
 
 #include "common/strlcpy.h"
 #include <stdlib.h>
+
+#ifdef _MSC_VER
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
+#endif //_MSC_VER
 
 #include <time.h>
 #include <math.h>
@@ -161,7 +166,7 @@ typedef struct Texture_s
     char *name;
     u8 *image;
     int sampler;
-    u32 id;
+    int id;
     int internal_format; // Format of texture object
     int image_format; // Format of loaded image
     int wrap_s; // Wrapping mode on S axis

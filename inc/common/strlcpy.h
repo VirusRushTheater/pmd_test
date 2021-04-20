@@ -18,6 +18,7 @@
 #define _STRLCPY_H_
 
 #include <stdint.h>
+#include <stdlib.h>
 
 size_t strlcpy(char *dst, const char *src, size_t dsize);
 

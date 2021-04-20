@@ -57,6 +57,8 @@ double __declspec (naked) __fastcall sqrt14(double n)
     _asm fsqrt
     _asm ret 8
 }
+#else
+#error "Fast square root method not defined here for compilers other than Visual C++ or GCC."
 #endif
 
 float lerp(float a, float b, float t)
@@ -310,7 +312,6 @@ ivec4 ivec4_scale_xyzw(ivec4 a, int x, int y, int z, int w)
 
     return b;
 }
-
 
 vec4 vec4_normalize(vec4 a)
 {
@@ -630,6 +631,24 @@ ivec2 ivec2_add(ivec2 a, ivec2 b)
     return t;
 }
 
+vec2 vec2_sub(vec2 a, vec2 b)
+{
+    vec2 t;
+    t.x = a.x - b.x;
+    t.y = a.y - b.y;
+
+    return t;
+}
+
+ivec2 ivec2_sub(ivec2 a, ivec2 b)
+{
+    ivec2 t;
+    t.x = a.x - b.x;
+    t.y = a.y - b.y;
+
+    return t;
+}
+
 vec2 vec2_mul(vec2 v, vec2 u)
 {
     vec2 t;
@@ -789,6 +808,15 @@ mat4 mat4_init()
                      make_vec4(0.0f, 0.0f, 0.0f, 0.0f));
 }
 
+mat4 mat4_add(mat4 a, mat4 b)
+{
+     for (int i = 0; i < 16; i++)
+     {
+         a.m[i] += b.m[i];
+     }
+     return (a);
+}
+
 mat4 mat4_scale(mat4 m, float lamba)
 {
     m.a = vec4_scale(m.a, lamba);
@@ -801,44 +829,72 @@ mat4 mat4_scale(mat4 m, float lamba)
 
 mat4 mat4_scale_xyz(mat4 m, float x, float y, float z)
 {
-    m.a = vec4_scale_xyz(m.a, x, y, z);
-    m.b = vec4_scale_xyz(m.b, x, y, z);
-    m.c = vec4_scale_xyz(m.c, x, y, z);
-    m.d = vec4_scale_xyz(m.d, x, y, z);
+    m.a = vec4_scale(m.a, x);
+    m.b = vec4_scale(m.b, y);
+    m.c = vec4_scale(m.c, z);
 
     return m;
 }
 
 mat4 mat4_scale_xyzw(mat4 m, float x, float y, float z, float w)
 {
-    m.a = vec4_scale_xyzw(m.a, x, y, z, w);
-    m.b = vec4_scale_xyzw(m.b, x, y, z, w);
-    m.c = vec4_scale_xyzw(m.c, x, y, z, w);
-    m.d = vec4_scale_xyzw(m.d, x, y, z, w);
+    m.a = vec4_scale(m.a, x);
+    m.b = vec4_scale(m.b, y);
+    m.c = vec4_scale(m.c, z);
+    m.d = vec4_scale(m.d, w);
 
     return m;
 }
 
 mat4 mat4_translate(mat4 m, float x, float y, float z)
 {
-    m.m[3] += x;
-    m.m[7] += y;
-    m.m[11] += z;
-
-    return m;
-}
-
-void mat4_translate2(mat4 m, vec3 v)
-{
     vec4 v1, v2, v3;
-    v1 = vec4_scale(m.a, v.v[0]);
-    v2 = vec4_scale(m.b, v.v[1]);
-    v3 = vec4_scale(m.c, v.v[2]);
     
+    v1 = vec4_scale(m.a, x);
+    v2 = vec4_scale(m.b, y);
+    v3 = vec4_scale(m.c, z);
+
     m.d = vec4_add(v1, m.d);
     m.d = vec4_add(v2, m.d);
     m.d = vec4_add(v3, m.d);
+
+    return m;
+
 }
+
+//mat4 mat4_translate3(mat4 m, float x, float y, float z)
+//{
+//    mat4 translate_mat = mat4_identity();
+//    //translate_mat.a.w = x;
+//    //translate_mat.b.w = y;
+//    //translate_mat.c.w = y;
+//
+//    translate_mat.m[3] += x;
+//    translate_mat.m[7] += y;
+//    translate_mat.m[11] += z;
+//    m = mat4_mul(m, translate_mat);
+//
+//    return m;
+//}
+//
+//mat4 mat4_translate2(mat4 m, vec3 v)
+//{
+//    //vec4 v1, v2, v3;
+//    //v1 = vec4_scale(m.a, v.v[0]);
+//    //v2 = vec4_scale(m.b, v.v[1]);
+//    //v3 = vec4_scale(m.c, v.v[2]);
+//    //
+//    //m.d = vec4_add(v1, m.d);
+//    //m.d = vec4_add(v2, m.d);
+//    //m.d = vec4_add(v3, m.d);
+//    mat4 ret = mat4_identity();
+//    ret.m[12] = v.x;
+//    ret.m[13] = v.y;
+//    ret.m[14] = v.z;
+//
+//    m = mat4_mul(m, ret);
+//    return m;
+//}
 
 mat4 mat4_rotate(mat4 m, float angle, float x, float y, float z)
 {
@@ -923,14 +979,30 @@ mat4 mat4_tranpose2(mat4 m)
 //}
 //#endif
 
-mat4 mat4_ortho(float left, float right, float bottom, float top, float znear, float zfar)
+mat4 mat4_ortho(mat4 mtx, float left, float right, float bottom, float top, float znear, float zfar)
 {
-    return mat4_make(make_vec4(2.0f / (right - left), 0.0f, 0.0f, 0.0f),
-                     make_vec4(0.0f, 2.0f / (top - bottom), 0.0f, 0.0f),
-                     make_vec4(0.0f, 0.0f, 2.0f / (zfar - znear), 0.0f),
-                     make_vec4((right + left) / (right - left) * -1.0f,
-                               (top + bottom) / (top - bottom) * -1.0f,
-                               (zfar + znear) / (zfar - znear) * -1.0f, 1.0f));
+    float lr = 1 / (left - right);
+    float bt = 1 / (bottom - top);
+    float nf = 1 / (znear - zfar);
+
+    mtx.m[0] = -2.0f * lr;
+    mtx.m[1] = 0;
+    mtx.m[2] = 0;
+    mtx.m[3] = 0;
+    mtx.m[4] = 0;
+    mtx.m[5] = -2.0f * bt;
+    mtx.m[6] = 0;
+    mtx.m[7] = 0;
+    mtx.m[8] = 0;
+    mtx.m[9] = 0;
+    mtx.m[10] = 2.0f * nf;
+    mtx.m[11] = 0.0f;
+    mtx.m[12] = (left + right) * lr;
+    mtx.m[13] = (top + bottom) * bt;
+    mtx.m[14] = (zfar + znear) * nf;
+    mtx.m[15] = 1.0f;
+
+    return mtx;
 }
 
 mat4 mat4_ortho2(mat4 mtx, float left, float right, float bottom, float top, float znear, float zfar)
@@ -969,10 +1041,10 @@ mat4 mat4_ortho3(mat4 mtx, float left, float right, float bottom, float top, flo
     return mtx;
 }
 
-mat4	mat4_perspective(float angle, float ratio, float znear, float zfar)
+mat4 mat4_perspective(float angle, float ratio, float znear, float zfar)
 {
-    mat4	ret = mat4_init();
-    float	t = tanf(angle / 2.0f);
+    mat4 ret = mat4_init();
+    float t = tanf(angle / 2.0f);
 
     ret.m[0] = 1.0f / (t * ratio);
     ret.m[1] = 0.f;
@@ -994,11 +1066,39 @@ mat4	mat4_perspective(float angle, float ratio, float znear, float zfar)
     return ret;
 }
 
-
 mat4 mat4_lookAt(vec3 eye, vec3 center, vec3 up)
 {
     vec3 f, u, s;
     mat4 dest = mat4_init();
+    f = vec3_sub(center, eye);
+    f = vec3_normalize(f);
+    
+    s = vec3_cross(f, up);
+    s = vec3_normalize(s);
+    u = vec3_cross(s, f);
+    
+    dest.a.x =  s.x;
+    dest.a.y =  u.x;
+    dest.a.z =- f.x;
+    dest.b.x =  s.y;
+    dest.b.y =  u.y;
+    dest.b.z =- f.y;
+    dest.c.x =  s.z;
+    dest.c.y =  u.z;
+    dest.c.z =- f.z;
+    dest.d.x =- vec3_dot(s, eye);
+    dest.d.y =- vec3_dot(u, eye);
+    dest.d.z =  vec3_dot(f, eye);
+    dest.a.w =  dest.b.w = dest.c.w = 0.0f;
+    dest.d.w =  1.0f;
+
+    return dest;
+}
+
+mat4 mat4_lookAt2(mat4 mtx, vec3 eye, vec3 center, vec3 up)
+{
+    vec3 f, u, s;
+    mat4 dest = mtx;
     f = vec3_sub(center, eye);
     f = vec3_normalize(f);
     

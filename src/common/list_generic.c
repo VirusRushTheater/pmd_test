@@ -26,7 +26,7 @@
 
 NODE_T *TEMPLATE(node_new, NODE_T)(T data)
 {
-    NODE_T *node = (NODE_T*) malloc(sizeof(*node));
+    NODE_T *node = malloc(sizeof(*node));
     node->next = NULL;
     node->prev = NULL;
     node->data = data;
@@ -35,7 +35,7 @@ NODE_T *TEMPLATE(node_new, NODE_T)(T data)
 
 LIST_T *TEMPLATE(list_new, LIST_T)()
 {
-    LIST_T *list = (LIST_T*) malloc(sizeof(*list));
+    LIST_T *list = malloc(sizeof(*list));
     list->first = NULL;
     list->last  = NULL;
     list->count = 0;
@@ -92,7 +92,7 @@ void TEMPLATE(list_clear, LIST_T)(LIST_T *list)
 {
     _LIST_FOREACH(list, first, next, cur)
     {
-        memset(&cur->data, 0, sizeof(T));
+        memset(&cur->data, NULL, sizeof(T));
     }
 }
 
@@ -194,25 +194,29 @@ void TEMPLATE(list_push_rear, LIST_T)(LIST_T *list, T item)
 
 void TEMPLATE(list_pop_front, LIST_T)(LIST_T *list)
 {
-    if (list->first == NULL)
-    {
-        ERROR("Deque underflow! Unable to remove!\n");
-        return;
-    }
-    // remove an item from the beginning of the queue
-    NODE_T *tmp_front = list->first->next;
+    //if (list->first == NULL)
+    //{
+    //    ERROR("Deque underflow! Unable to remove!\n");
+    //    return;
+    //}
+    //// remove an item from the beginning of the queue
+    //NODE_T *tmp_front = list->first->next;
 
-    if (tmp_front != NULL)
-    {
-        tmp_front->prev = NULL;
-    }
-    else if (tmp_front == NULL)
-    {
-        list->last = NULL;
-    }
+    //if (tmp_front != NULL)
+    //{
+    //    tmp_front->prev = NULL;
+    //}
+    //else if (tmp_front == NULL)
+    //{
+    //    list->last = NULL;
+    //}
 
-    list->first = tmp_front;
-    list->count--;
+    //list->first = tmp_front;
+    //list->count--;
+
+    NODE_T *node = list->first;
+    LIST_REMOVE(LIST_T, list, node);
+
 }
 
 void TEMPLATE(list_pop_rear, LIST_T)(LIST_T *list)
@@ -253,11 +257,12 @@ T TEMPLATE(list_at, LIST_T)(LIST_T *list, int index)
         count++;
         current = current->next;
     }
+    return NULL;
 }
 
 T *TEMPLATE(list_to_array, LIST_T)(LIST_T *list)
 {
-    T *ret_array = (T*) malloc(sizeof(T) * list->count);
+    T *ret_array = malloc(sizeof(T) * list->count);
 
     int i = 0;
 
@@ -310,6 +315,30 @@ T *TEMPLATE(list_to_array, LIST_T)(LIST_T *list)
 #define LIST_T ListTexture
 #define NODE_T ListNodeTexture
 #define T struct Texture_s *
+#define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
+    NODE_T *V = NULL;\
+    for (V = _node = L->S; _node != NULL; V = _node = _node->M)
+#include "list_generic.c"
+#undef _LIST_FOREACH
+#undef T
+#undef NODE_T
+#undef LIST_T
+
+#define LIST_T ListBuffer
+#define NODE_T ListNodeBuffer
+#define T struct VertexBuffer_s *
+#define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
+    NODE_T *V = NULL;\
+    for (V = _node = L->S; _node != NULL; V = _node = _node->M)
+#include "list_generic.c"
+#undef _LIST_FOREACH
+#undef T
+#undef NODE_T
+#undef LIST_T
+
+#define LIST_T ListRenderer2DInfo
+#define NODE_T ListNodeRenderer2DInfo
+#define T struct Renderer2DInfo_s *
 #define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
     NODE_T *V = NULL;\
     for (V = _node = L->S; _node != NULL; V = _node = _node->M)

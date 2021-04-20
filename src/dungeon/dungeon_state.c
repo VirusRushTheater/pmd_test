@@ -18,44 +18,53 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include "dungeon/dungeon_state.h"
-#include "game_common/item.h"
-#include "game_common/hunger.h"
+//#include "dungeon/dungeon_state.h"
+#include "game/pokemon.h"
+#include "game/item.h"
+#include "game/hunger.h"
 
 // Called when starting a new dungeon
 void SetUpDefualtStatus(PokemonParty *party)
 {
-    for (int i = 0; i < party->size; i++)
+    Pokemon_t** party_member;
+    int i;
+    for (i = 0, party_member = party->members;
+        i < party->size;
+        i++, party_member++)
     {
-        party->members[i].status.attack_multiplier = 1;
-        party->members[i].status.sp_attack_multiplier = 1;
-        party->members[i].status.defense_multiplier = 1;
-        party->members[i].status.sp_defense_multiplier = 1;
-        party->members[i].status.speed_multiplier = 1;
-        party->members[i].status.current_belly = DEFUALT_BELLY_SIZE;
-        party->members[i].status.max_belly = DEFUALT_BELLY_SIZE;
-        party->members[i].status.burned = false;
-        party->members[i].status.confused = false;
-        party->members[i].status.paralysis = false;
-        party->members[i].status.posioned = false;
-        party->members[i].status.sleeping = false;
+        (*party_member)->status->attack_multiplier = 1;
+        (*party_member)->status->sp_attack_multiplier = 1;
+        (*party_member)->status->defense_multiplier = 1;
+        (*party_member)->status->sp_defense_multiplier = 1;
+        (*party_member)->status->speed_multiplier = 1;
+        (*party_member)->status->current_belly = DEFUALT_BELLY_SIZE;
+        (*party_member)->status->max_belly = DEFUALT_BELLY_SIZE;
+        (*party_member)->status->burned = false;
+        (*party_member)->status->confused = false;
+        (*party_member)->status->paralysis = false;
+        (*party_member)->status->posioned = false;
+        (*party_member)->status->sleeping = false;
     }
 }
 
 // Called when then player gets past the stairs
 void SetStatusAfterStairs(PokemonParty *party)
 {
-    for (int i = 0; i < party->size; i++)
+    Pokemon_t** party_member;
+    int i;
+    for (i = 0, party_member = party->members;
+        i < party->size;
+        i++, party_member++)
     {
-        party->members[i].status.attack_multiplier = 1;
-        party->members[i].status.sp_attack_multiplier = 1;
-        party->members[i].status.defense_multiplier = 1;
-        party->members[i].status.sp_defense_multiplier = 1;
-        party->members[i].status.speed_multiplier = 1;
-        party->members[i].status.burned = false;
-        party->members[i].status.confused = false;
-        party->members[i].status.paralysis = false;
-        party->members[i].status.posioned = false;
-        party->members[i].status.sleeping = false;
+        (*party_member)->status->attack_multiplier = 1;
+        (*party_member)->status->sp_attack_multiplier = 1;
+        (*party_member)->status->defense_multiplier = 1;
+        (*party_member)->status->sp_defense_multiplier = 1;
+        (*party_member)->status->speed_multiplier = 1;
+        (*party_member)->status->burned = false;
+        (*party_member)->status->confused = false;
+        (*party_member)->status->paralysis = false;
+        (*party_member)->status->posioned = false;
+        (*party_member)->status->sleeping = false;
     }
 }

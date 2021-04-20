@@ -21,7 +21,6 @@
 #ifndef _SOUND_CORE_H_
 #define _SOUND_CORE_H_
 
-#include <pthread.h>
 #include "audio_core/al_common.h"
 
 typedef struct Stack Stack;
@@ -74,6 +73,7 @@ typedef struct SoundInfo
 
 //int ogg_decode(const char *file_name, const char *file_name_out);
 SoundInfo *ogg_decode(const char *file_name);
+SoundInfo *SoundInfo_LoadOGG(const char * filename, ALuint pDestAudioBuffer);
 //int ogg_decode(const char *file_name, char *raw_pcm_out);
 SoundInfo *SoundInfo_New(int freqency, int channels, int bits_per_channel, Stack *buffer, int size);
 

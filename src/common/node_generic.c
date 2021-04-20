@@ -25,7 +25,7 @@
 
 NODE_T *TEMPLATE(node_new, NODE_T)(T data)
 {
-    NODE_T *node = (NODE_T*) malloc(sizeof(*node));
+    NODE_T *node = malloc(sizeof(*node));
     node->next = NULL;
     node->prev = NULL;
     node->data = data;
@@ -47,13 +47,13 @@ NODE_T *TEMPLATE(node_new, NODE_T)(T data)
 #undef NODE_T
 
 #define NODE_T ListNodeCharPtr
-#define T u8 *
+#define T u8*
 #include "node_generic.c"
 #undef T
 #undef NODE_T
 
 #define NODE_T ListNodeTexture
-#define T Texture_t
+#define T Texture_t*
 #include "node_generic.c"
 #undef T
 #undef NODE_T

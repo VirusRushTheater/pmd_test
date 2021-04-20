@@ -262,12 +262,17 @@ bool makeRoom(int x, int y, int xlength, int ylength, Direction direction)
             for (int xtemp = (x - xlen / 2); xtemp < (x + (xlen + 1) / 2); xtemp++)
             {
 
-                if (xtemp == (x - xlen / 2)) setCell(xtemp, ytemp, wall);
-                else if (xtemp == (x + (xlen - 1) / 2)) setCell(xtemp, ytemp, wall);
-                else if (ytemp == y) setCell(xtemp, ytemp, wall);
-                else if (ytemp == (y + ylen - 1)) setCell(xtemp, ytemp, wall);
+                if (xtemp == (x - xlen / 2))
+                    setCell(xtemp, ytemp, wall);
+                else if (xtemp == (x + (xlen - 1) / 2))
+                    setCell(xtemp, ytemp, wall);
+                else if (ytemp == y)
+                    setCell(xtemp, ytemp, wall);
+                else if (ytemp == (y + ylen - 1))
+                    setCell(xtemp, ytemp, wall);
 
-                else setCell(xtemp, ytemp, floor);
+                else
+                    setCell(xtemp, ytemp, floor);
             }
         }
         break;
@@ -376,7 +381,7 @@ bool createDungeon(int inx, int iny, int inobj)
 
 
     // dungeon_map = new int[xsize * ysize];
-    dungeon_map = (int*) malloc(sizeof(int) * (xsize * ysize));
+    dungeon_map = malloc(sizeof(int) * (xsize * ysize));
 
     //start with making the "standard stuff" on the map
     for (int y = 0; y < ysize; y++)
@@ -584,7 +589,7 @@ void dungeon_main()
     int y = 32;
     int dungeon_objects = 150;
 
-    dungeon_map = (int*) malloc(sizeof(int) * (x * y));
+    dungeon_map = malloc(sizeof(int) * (x * y));
     if (createDungeon(x, y, dungeon_objects));
     showDungeon();
 

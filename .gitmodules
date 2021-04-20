@@ -1,33 +1,9 @@
 [submodule "third-party/lodepng"]
 	path = third-party/lodepng
 	url = https://github.com/VirusRushTheater/lodepng
-[submodule "third-party/openal-soft"]
-	path = third-party/openal-soft
-	url = https://github.com/kcat/openal-soft.git
-[submodule "third-party/glfw"]
-	path = third-party/glfw
-	url = https://github.com/glfw/glfw.git
-[submodule "third-party/ogg"]
-	path = third-party/ogg
-	url = https://github.com/xiph/ogg.git
-[submodule "third-party/libpng"]
-	path = third-party/libpng
-	url = https://github.com/glennrp/libpng.git
-[submodule "third-party/vorbis"]
-	path = third-party/vorbis
-	url = https://github.com/xiph/vorbis.git
 [submodule "third-party/pthreads-w32"]
 	path = third-party/pthreads-w32
 	url = https://github.com/uudiin/pthreads-w32.git
-[submodule "third-party/SDL"]
-	path = third-party/SDL
-	url = https://github.com/SDL-mirror/SDL.git
-[submodule "third-party/Simple-OpenGL-Image-Library"]
-	path = third-party/Simple-OpenGL-Image-Library
-	url = https://github.com/kbranigan/Simple-OpenGL-Image-Library.git
-[submodule "third-party/zlib"]
-	path = third-party/zlib
-	url = https://github.com/madler/zlib.git
-[submodule "third-party/glew-cmake"]
-	path = third-party/glew-cmake
-	url = https://github.com/Perlmint/glew-cmake.git
+[submodule "third-party/iniparser"]
+	path = third-party/iniparser
+	url = https://github.com/ndevilla/iniparser.git

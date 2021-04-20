@@ -24,9 +24,9 @@
 
 Stack *stack_new(size_t capacity)
 {
-    Stack *stack = (Stack*) malloc(sizeof(*stack));
+    Stack *stack = malloc(sizeof(*stack));
     stack->capacity = capacity;
-    stack->data = (void**) malloc(sizeof(void *) * stack->capacity);
+    stack->data = malloc(sizeof(void *) * stack->capacity);
     stack->size = 0;
     return stack;
 }
@@ -34,13 +34,15 @@ Stack *stack_new(size_t capacity)
 void *stack_resize(Stack *stack, size_t capacity)
 {
     stack->capacity = capacity;
-    void **temp = (void**) realloc(stack->data, sizeof(void *) * stack->capacity);
+    void **temp = realloc(stack->data, sizeof(void *) * stack->capacity);
 
     if (!temp)
     {
         return NULL;
     }
     stack->data = temp;
+
+    return temp;
 }
 
 void stack_delete(Stack *stack)

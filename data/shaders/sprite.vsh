@@ -1,22 +1,20 @@
 #version 330 core
-#extension GL_ARB_shading_language_420pack: enable
 
-//uniform mat4 ModelMatrix;
-//uniform mat4 ProjectionMatrix;
+uniform mat4 ModelMatrix;
+uniform mat4 ProjectionMatrix;
+uniform mat4 ViewMatrix;
 
-layout (location = 0) in vec4 vertex_position; //vec2 position, vec2 texCoords
-layout (location = 1) in vec4 vertex_color;
+//layout (location = 0) in vec4 vertex; // <vec2 position, vec2 texCoords>
+layout (location = 0) in vec2 vertex;
+//layout (location = 1) in vec2 colors;
+layout (location = 1) in vec2 texcoords;
 
-out vs_output
-{
-    vec4 color;
-    vec2 texcoord;
-} result;
+out vec2 texcoord;
 
 void main()
 {
-    //gl_Position = ProjectionMatrix * ModelMatrix * vec4(vertex_position.xy, 0.0, 1.0);
-    gl_Position = vec4(vertex_position.xy, 0.0, 1.0);
-    result.color = vertex_color;
-    result.texcoord = vertex_position.zw;
+    //texcoord = vertex.zw;
+    texcoord = texcoords;
+
+    gl_Position =  ProjectionMatrix * ModelMatrix * ViewMatrix * vec4(vertex, 0.0, 1.0);
 }
