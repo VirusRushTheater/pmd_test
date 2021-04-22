@@ -18,6 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#include <stdlib.h>
+#include <string.h>
 #include "common/stack_error.h"
 #include "common/stack_generic.h"
 
@@ -81,7 +83,9 @@ StackErrorCode TEMPLATE(stack_update, STACK_T)(STACK_T *stack)
 
     for (size_t i = 0; i < stack->size; i++)
     {
-        if (stack->data[i] != NULL) // Find a non-empty slot
+        // No pointers used in these stacks, should be conditionally changed
+        // to NULL if that happened.
+        if (stack->data[i] != 0) // Find a non-empty slot
         {
             STACK_PUSH(STACK_T, stack_temp, stack->data[i]);
         }
@@ -130,7 +134,9 @@ StackErrorCode TEMPLATE(stack_remove, STACK_T)(STACK_T *stack, T element)
     {
         if (stack->data[i] == element)
         {
-            stack->data[i] = NULL;
+            // No pointers used in these stacks, should be conditionally changed
+            // to NULL if that happened.
+            stack->data[i] = 0;
             StackErrorCode result = STACK_UPDATE(STACK_T, stack);
 
             if (result != STACK_SUCCESS)

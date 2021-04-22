@@ -28,28 +28,28 @@ void BerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation locat
 void BerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 void BerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
-void OranBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void OranBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void OranBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
+void OranBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void OranBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void OranBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
-void SitrusBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void SitrusBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void SitrusBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
+void SitrusBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void SitrusBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void SitrusBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
-void RawstBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void RawstBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void RawstBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
+void RawstBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void RawstBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void RawstBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
-void CheriBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void CheriBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void CheriBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
+void CheriBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void CheriBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void CheriBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
-void PechaBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void PechaBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void PechaBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
+void PechaBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void PechaBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void PechaBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
-void ChestoBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void ChestoBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void ChestoBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
+void ChestoBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void ChestoBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void ChestoBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
 #endif

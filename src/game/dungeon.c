@@ -47,8 +47,8 @@ void Dungeon_Init(PokemonParty *party, u32 seed)
 {
     dungeon = calloc(1, sizeof(*dungeon));
     char *name = "TestDungeon";
-    //strlcpy(dungeon->name, name, sizeof(name));
-    dungeon->name = "TestDungeon";
+    strlcpy(dungeon->name, name, sizeof(name));
+    // dungeon->name = "TestDungeon";
     dungeon->seed = seed;
     srand(seed);
 
@@ -176,7 +176,8 @@ int GetItemFromTile(Dungeon *dungeon, int x, int y)
 void RemoveItemFromTile(Dungeon *dungeon, int x, int y)
 {
     SetItemToTile(dungeon, x, y, None);
-    SetTile(floor, x, y, tileFloor);
+    // Where do I get "floor" from?
+    // SetTile(floor, x, y, tileFloor);
 }
 
 void SetItemToTile(Dungeon *dungeon, int x, int y, int item)

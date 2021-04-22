@@ -30,7 +30,7 @@ if(" ${CMAKE_SOURCE_DIR}" STREQUAL " ${CMAKE_BINARY_DIR}")
 endif()
 
 # Lib and dir locations
-set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_BINARY_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/lib)
 
@@ -50,10 +50,6 @@ elseif( COMPILER_SUPPORTS_CXX0X)
 else()
     # MSVC, On by default (if available)
 endif()
-
-# Choose a proper threading library
-set(THREADS_PREFER_PTHREAD_FLAG ON)
-find_package(Threads REQUIRED)
 
 # Find or build every third party package.
 add_subdirectory(third-party)

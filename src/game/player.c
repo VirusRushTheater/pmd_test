@@ -19,7 +19,8 @@
 // THE SOFTWARE.
 
 #include "util.h"
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
+#include <SDL2/SDL.h>
 
 #include <pthread.h>
 
@@ -99,7 +100,7 @@ static void MovePlayerXAxis(Player_t *self, Dungeon *dungeon, Direction directio
     }
 }
 
-static MovePlayerYAxis(Player_t *self, Dungeon *dungeon, Direction direction, int position_delta)
+static void MovePlayerYAxis(Player_t *self, Dungeon *dungeon, Direction direction, int position_delta)
 {
     TileState tile = GetTileInFront(dungeon, self->leader->position, direction);
     if (IsTilePassableByType(dungeon->floor, tile.tile))
@@ -113,7 +114,7 @@ static MovePlayerYAxis(Player_t *self, Dungeon *dungeon, Direction direction, in
 
 static bool DoneWaiting()
 {
-    u64 current_frames_updated = Game_GetTicks();
+    u32 current_frames_updated = SDL_GetTicks();
     return current_frames_updated % 10 == 0;
 }
 

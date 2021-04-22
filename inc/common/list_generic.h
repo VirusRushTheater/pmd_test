@@ -21,7 +21,6 @@
 #include "util.h"
 #include "common/list_types.h"
 
-
 #ifndef LIST_NEW
 #define LIST_NEW(LIST_T) \
 TEMPLATE(list_new, LIST_T)()
@@ -75,7 +74,7 @@ TEMPLATE(list_at, LIST_T)(S, INDEX)
 #if defined(LIST_T)
 #include "common/template.h"
 
-NODE_T *TEMPLATE(node_new, NODE_T)(T data);
+NODE_T *TEMPLATE(listnode_new, NODE_T)(T data);
 LIST_T *TEMPLATE(list_new, LIST_T)();
 void TEMPLATE(list_delete, LIST_T)(LIST_T *list);
 void TEMPLATE(list_remove, LIST_T)(LIST_T *list, NODE_T *node);
@@ -93,14 +92,18 @@ T TEMPLATE(list_at, LIST_T)(LIST_T *list, int index);
 #elif !defined(LIST_H_)
 #define LIST_H_
 
+// Defined the "T_IS_POINTER" macro to avoid compilation time warnings.
+
 #define LIST_T ListChar
 #define NODE_T ListNodeChar
 #define T char
+#define T_IS_POINTER 0
 #define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
     NODE_T *V = NULL;\
     for (V = _node = L->S; _node != NULL; V = _node = _node->M)
 #include "list_generic.h"
 #undef _LIST_FOREACH
+#undef T_IS_POINTER
 #undef T
 #undef NODE_T
 #undef LIST_T
@@ -108,11 +111,13 @@ T TEMPLATE(list_at, LIST_T)(LIST_T *list, int index);
 #define LIST_T ListInt
 #define NODE_T ListNodeInt
 #define T int
+#define T_IS_POINTER 0
 #define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
     NODE_T *V = NULL;\
     for (V = _node = L->S; _node != NULL; V = _node = _node->M)
 #include "list_generic.h"
 #undef _LIST_FOREACH
+#undef T_IS_POINTER
 #undef T
 #undef NODE_T
 #undef LIST_T
@@ -120,11 +125,13 @@ T TEMPLATE(list_at, LIST_T)(LIST_T *list, int index);
 #define LIST_T ListCharPtr
 #define NODE_T ListNodeCharPtr
 #define T u8 *
+#define T_IS_POINTER 1
 #define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
     NODE_T *V = NULL;\
     for (V = _node = L->S; _node != NULL; V = _node = _node->M)
 #include "list_generic.h"
 #undef _LIST_FOREACH
+#undef T_IS_POINTER
 #undef T
 #undef NODE_T
 #undef LIST_T
@@ -132,11 +139,13 @@ T TEMPLATE(list_at, LIST_T)(LIST_T *list, int index);
 #define LIST_T ListTexture
 #define NODE_T ListNodeTexture
 #define T struct Texture_s *
+#define T_IS_POINTER 1
 #define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
     NODE_T *V = NULL;\
     for (V = _node = L->S; _node != NULL; V = _node = _node->M)
 #include "list_generic.h"
 #undef _LIST_FOREACH
+#undef T_IS_POINTER
 #undef T
 #undef NODE_T
 #undef LIST_T
@@ -144,11 +153,13 @@ T TEMPLATE(list_at, LIST_T)(LIST_T *list, int index);
 #define LIST_T ListBuffer
 #define NODE_T ListNodeBuffer
 #define T struct VertexBuffer_s *
+#define T_IS_POINTER 1
 #define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
     NODE_T *V = NULL;\
     for (V = _node = L->S; _node != NULL; V = _node = _node->M)
 #include "list_generic.h"
 #undef _LIST_FOREACH
+#undef T_IS_POINTER
 #undef T
 #undef NODE_T
 #undef LIST_T
@@ -156,11 +167,13 @@ T TEMPLATE(list_at, LIST_T)(LIST_T *list, int index);
 #define LIST_T ListRenderer2DInfo
 #define NODE_T ListNodeRenderer2DInfo
 #define T struct Renderer2DInfo_s *
+#define T_IS_POINTER 1
 #define _LIST_FOREACH(L, S, M, V) NODE_T *_node = NULL;\
     NODE_T *V = NULL;\
     for (V = _node = L->S; _node != NULL; V = _node = _node->M)
 #include "list_generic.h"
 #undef _LIST_FOREACH
+#undef T_IS_POINTER
 #undef T
 #undef NODE_T
 #undef LIST_T

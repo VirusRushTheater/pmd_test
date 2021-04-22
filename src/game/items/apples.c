@@ -22,34 +22,34 @@
 #include "game/hunger.h"
 #include "game/items/apples.h"
 
-void AppleUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void AppleUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "Apple");
     AdjustBellySize(user, APPLE_HUNGER_REDUCE);
 }
 
-void AppleThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void AppleThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("AppleThrow stub called!\n");
 }
 
-void AppleDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void AppleDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("AppleDrop stub called!\n");
 }
 
-void BigAppleUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void BigAppleUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "BigApple");
     AdjustBellySize(user, BIG_APPLE_HUNGER_REDUCE);
 }
 
-void BigAppleThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void BigAppleThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("BigAppleThrow stub called!\n");
 }
 
-void BigAppleDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void BigAppleDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("BigAppleDrop stub called!\n");
 }

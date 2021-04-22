@@ -30,10 +30,10 @@ void BerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation locat
     switch (item)
     {
         case OranBerry:
-            OranBerryUse(bag, party, user, location);
+            OranBerryUse(bag, party, user, location, item);
             break;
         case SitrusBerry:
-            SitrusBerryUse(bag, party, user, location);
+            SitrusBerryUse(bag, party, user, location, item);
             break;
         case RawstBerry:
             break;
@@ -56,10 +56,10 @@ void BerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation loc
     switch (item)
     {
         case OranBerry:
-            OranBerryThrow(bag, party, user, location);
+            OranBerryThrow(bag, party, user, location, item);
             break;
         case SitrusBerry:
-            SitrusBerryThrow(bag, party, user, location);
+            SitrusBerryThrow(bag, party, user, location, item);
             break;
         case RawstBerry:
             break;
@@ -82,10 +82,10 @@ void BerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation loca
     switch (item)
     {
         case OranBerry:
-            OranBerryDrop(bag, party, user, location);
+            OranBerryDrop(bag, party, user, location, item);
             break;
         case SitrusBerry:
-            SitrusBerryDrop(bag, party, user, location);
+            SitrusBerryDrop(bag, party, user, location, item);
             break;
         case RawstBerry:
             break;
@@ -103,7 +103,7 @@ void BerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation loca
     }
 }
 
-void OranBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void OranBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     if (RemoveItem(bag, user, location, "OranBerry"))
     {
@@ -112,52 +112,52 @@ void OranBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation l
     }
 }
 
-void OranBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void OranBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "OranBerry");
     printf("OranBerryThrow stub called!\n");
 }
 
-void OranBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void OranBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("OranBerryDrop stub called!\n");
 }
 
-void SitrusBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void SitrusBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "SitrusBerry");
     AddHealth(user, ORAN_BERRY_HEALTH_HEAL);
     AdjustBellySize(user, BERRY_HUNGER_REDUCE);
 }
 
-void SitrusBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void SitrusBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("SitrusBerryThrow stub called!\n");
 }
 
-void SitrusBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void SitrusBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("SitrusBerryDrop stub called!\n");
 }
 
-void RawstBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void RawstBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "RawstBerry");
 
     AdjustBellySize(user, BERRY_HUNGER_REDUCE);
 }
 
-void RawstBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void RawstBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("RawstBerryThrow stub called!\n");
 }
 
-void RawstBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void RawstBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("RawstBerryDrop stub called!\n");
 }
 
-void CheriBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void CheriBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "CheriBerry");
 
@@ -165,35 +165,35 @@ void CheriBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation 
 
 }
 
-void CheriBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void CheriBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("CheriBerryThrow stub called!\n");
 }
 
-void CheriBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void CheriBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("CheriBerryDrop stub called!\n");
 }
 
-void PechaBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void PechaBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "PechaBerry");
 
     AdjustBellySize(user, BERRY_HUNGER_REDUCE);
 }
 
-void PechaBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void PechaBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("PechaBerryThrow stub called!\n");
 }
 
-void PechaBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void PechaBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "PechaBerry");
 
 }
 
-void ChestoBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void ChestoBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     RemoveItem(bag, user, location, "ChestoBerry");
 
@@ -201,12 +201,12 @@ void ChestoBerryUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation
 
 }
 
-void ChestoBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void ChestoBerryThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("ChestoBerryThrow stub called!\n");
 }
 
-void ChestoBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location)
+void ChestoBerryDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item)
 {
     printf("ChestoBerryDrop stub called!\n");
 }

@@ -21,7 +21,7 @@
 #ifndef _TILE_MANAGER_H_
 #define _TILE_MANAGER_H_
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 typedef struct Tile
 {

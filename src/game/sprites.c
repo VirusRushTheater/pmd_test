@@ -20,7 +20,7 @@
 
 #include "util.h"
 #include <GL/glew.h>
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
 #include <lodepng.h>
 #include "common/vec.h"
 #include "common/strlcat.h"
@@ -71,17 +71,17 @@ static const char *background_sprites[] =
 Texture_t *Texture_New(const char *name, u8 *image, GLuint internal_format, GLuint image_format, GLuint wrap_s, GLuint wrap_t, GLuint filter_min,
                        GLuint filter_max, u32 width, u32 height)
 {
-    Texture_t *texture = malloc(sizeof(*texture));
-    texture->name = name;
-    texture->image = image;
-    texture->internal_format = internal_format;
-    texture->image_format = image_format;
-    texture->wrap_s = wrap_s;
-    texture->wrap_t = wrap_t;
-    texture->filter_min = filter_min;
-    texture->filter_max = filter_max;
-    texture->width = width;
-    texture->height = height;
+    Texture_t *texture =        malloc(sizeof(*texture));
+    texture->name =             strdup(name);
+    texture->image =            image;
+    texture->internal_format =  internal_format;
+    texture->image_format =     image_format;
+    texture->wrap_s =           wrap_s;
+    texture->wrap_t =           wrap_t;
+    texture->filter_min =       filter_min;
+    texture->filter_max =       filter_max;
+    texture->width =            width;
+    texture->height =           height;
 
     return texture;
 }

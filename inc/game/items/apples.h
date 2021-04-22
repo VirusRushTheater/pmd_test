@@ -24,12 +24,12 @@
 typedef struct PokemonParty PokemonParty;
 typedef Pokemon_t Pokemon_t;
 
-void AppleUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void AppleThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void AppleDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
+void AppleUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void AppleThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void AppleDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
-void BigAppleUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void BigAppleThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
-void BigAppleDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location);
+void BigAppleUse(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void BigAppleThrow(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
+void BigAppleDrop(Bag *bag, PokemonParty *party, Pokemon_t *user, ItemLocation location, Items item);
 
 #endif

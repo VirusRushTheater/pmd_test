@@ -21,7 +21,7 @@
 #include "util.h"
 
 #include <GL/glew.h>
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
 
 #include <pthread.h>
 
@@ -433,7 +433,7 @@ void Renderer_Init(Renderer_t *self)
 
 void Renderer_StartThread(Renderer_t *self)
 {
-    pthread_create(&self->thread_id, 0, Renderer_Update, self);
+    //pthread_create(&self->thread_id, 0, Renderer_Update, self);
 }
 
 void Renderer_Update(Renderer_t *self, ivec2 position)

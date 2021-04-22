@@ -1,4 +1,4 @@
-// Copyright(c) 2020 Purpasmart
+// Copyright(c) 2021 VirusRushTheater
 // The MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,48 +18,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#include "util.h"
+// Made this for higher hierarchy definitions.
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#pragma once
 
-#include "common/vec.h"
-#include "common/list_generic.h"
-
-#include "game/index_buffer.h"
-
-IndexBuffer_t *IndexBuffer_New(GLuint *data, GLsizei count)
+typedef enum 
 {
-    IndexBuffer_t *index_buffer = malloc(sizeof(*index_buffer));
-    if (index_buffer)
-    {
-        IndexBuffer_Init(index_buffer, data, count);
-    }
-    return index_buffer;
-}
-
-void IndexBuffer_Init(IndexBuffer_t *self, GLuint *data, GLsizei count)
-{
-    self->count = count;
-
-    glGenBuffers(1, &self->buffer_id);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self->buffer_id);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(GLuint), data, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
-
-void IndexBuffer_Bind(IndexBuffer_t *self)
-{
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self->buffer_id);
-}
-
-void IndexBuffer_Unbind(IndexBuffer_t *self)
-{
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
-
-void IndexBuffer_ShutDown(IndexBuffer_t *self)
-{
-    glDeleteBuffers(1, &self->buffer_id);
-    free(self);
-}
+    North,
+    East,
+    South,
+    West
+} Direction;

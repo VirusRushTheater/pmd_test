@@ -24,7 +24,7 @@
 #if defined(LIST_T)
 #include "common/template.h"
 
-NODE_T *TEMPLATE(node_new, NODE_T)(T data)
+NODE_T *TEMPLATE(listnode_new, NODE_T)(T data)
 {
     NODE_T *node = malloc(sizeof(*node));
     node->next = NULL;
@@ -92,13 +92,13 @@ void TEMPLATE(list_clear, LIST_T)(LIST_T *list)
 {
     _LIST_FOREACH(list, first, next, cur)
     {
-        memset(&cur->data, NULL, sizeof(T));
+        memset(&cur->data, 0, sizeof(T));
     }
 }
 
 void TEMPLATE(list_insert, LIST_T)(LIST_T *list, T item, int index)
 {
-    NODE_T *new_item = TEMPLATE(node_new, NODE_T)(item);
+    NODE_T *new_item = TEMPLATE(listnode_new, NODE_T)(item);
     int current_index = 0;
     NODE_T *current_item = list->first;
     NODE_T *prev_item = NULL;
@@ -136,7 +136,7 @@ void TEMPLATE(list_insert, LIST_T)(LIST_T *list, T item, int index)
 
 void TEMPLATE(list_push, LIST_T)(LIST_T *list, T value)
 {
-    NODE_T *node = TEMPLATE(node_new, NODE_T)(value);
+    NODE_T *node = TEMPLATE(listnode_new, NODE_T)(value);
 
     if (list->last == NULL)
     {
@@ -155,7 +155,7 @@ void TEMPLATE(list_push, LIST_T)(LIST_T *list, T value)
 void TEMPLATE(list_push_front, LIST_T)(LIST_T *list, T item)
 {
     // Add a element at the beginning of the queue
-    NODE_T *node = TEMPLATE(node_new, NODE_T)(item);
+    NODE_T *node = TEMPLATE(listnode_new, NODE_T)(item);
     node->next = list->first;
 
     if (list->first != NULL)
@@ -175,7 +175,7 @@ void TEMPLATE(list_push_rear, LIST_T)(LIST_T *list, T item)
 {
     // add element at the end of the queue
 
-    NODE_T *node = TEMPLATE(node_new, NODE_T)(item);
+    NODE_T *node = TEMPLATE(listnode_new, NODE_T)(item);
     node->next = list->last;
 
     if (list->last != NULL)
@@ -257,7 +257,13 @@ T TEMPLATE(list_at, LIST_T)(LIST_T *list, int index)
         count++;
         current = current->next;
     }
+
+    // Defined in order to avoid warnings.
+    #if T_IS_POINTER
     return NULL;
+    #else
+    return 0;
+    #endif
 }
 
 T *TEMPLATE(list_to_array, LIST_T)(LIST_T *list)

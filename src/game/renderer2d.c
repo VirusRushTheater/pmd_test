@@ -21,7 +21,7 @@
 #include "util.h"
 
 #include <GL/glew.h>
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
 
 #include "common/vec.h"
 #include "common/list_generic.h"
@@ -436,7 +436,7 @@ static void DrawDungeonSpriteLayers(Renderer2D_t *self, int tile, vec3 position,
 //    }
 //}
 
-static tid = 0;
+static pthread_t tid = 0;
 
 static void DrawDungeonSpriteLayersBatch(BatchRenderer2D_t *self, int tile, vec3 position, vec2 sprite_size)
 {

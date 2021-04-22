@@ -21,6 +21,10 @@
 #ifndef _RENDERER2D_MANAGER_H_
 #define _RENDERER2D_MANAGER_H_
 
+#include "renderer2d_info.h"
+#include "sprite.h"
+#include "single_sprite.h"
+
 #define RENDERER_MAX_SPRITES 10000
 #define RENDERER_VERTEX_SIZE sizeof(struct VertexData_s)
 #define RENDERER_SPRITE_SIZE RENDERER_VERTEX_SIZE * 4

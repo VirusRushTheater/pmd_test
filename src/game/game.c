@@ -20,7 +20,7 @@
 
 
 #include "util.h"
-#include <glfw3.h>
+#include <GLFW/glfw3.h>
 #include <pthread.h>
 
 #include "common/vec.h"
@@ -301,7 +301,7 @@ void Game_Update(Game_t *self)
     {
         self->time_info->timer += 1.0;
 
-        printf("ups %llu, fps %llu\n", self->updates, self->frames);
+        printf("ups %lu, fps %lu\n", self->updates, self->frames);
 
         self->updates = 0;
         self->frames = 0;

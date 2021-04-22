@@ -19,8 +19,8 @@
 // THE SOFTWARE.
 
 //#include "dungeon/dungeon_state.h"
-#include "game/pokemon.h"
 #include "game/item.h"
+#include "game/pokemon.h"
 #include "game/hunger.h"
 
 // Called when starting a new dungeon

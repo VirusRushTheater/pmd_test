@@ -24,6 +24,7 @@
 
 #define MAX_MOVES  4
 
+#include "pokemon.h"
 #include "util.h"
 
 typedef enum TileRangeModes

@@ -21,10 +21,10 @@
 #ifndef _POKEMON_MANAGER_H_
 #define _POKEMON_MANAGER_H_
 
+#include "basedefs.h"
 #include "util.h"
-#include "game/item.h"
+#include "itemlist.h"
 #include "common/vec.h"
-
 
 typedef enum Sex
 {
@@ -219,14 +219,6 @@ typedef struct Ability
     //char *name;
     //char *description;
 } Ability;
-
-typedef enum 
-{
-    North,
-    East,
-    South,
-    West
-} Direction;
 
 typedef struct Status_s
 {

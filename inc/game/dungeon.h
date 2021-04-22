@@ -23,8 +23,9 @@
 #define _DUNGEON_STATE_H_
 
 #include "util.h"
-
+#include "basedefs.h"
 #include "common/vec.h"
+#include "pokemon.h"
 
 typedef enum
 {
@@ -81,7 +82,7 @@ typedef struct
 
 typedef struct Dungeon
 {
-    int name;
+    char name[16];
     u64 seed;
     int difficulty;
     u32 *floor_seeds;
@@ -105,7 +106,6 @@ void Dungeon_ShutDown();
 
 Dungeon *GetDungeonObject(void);
 
-typedef enum Direction Direction;
 TileState GetTileInFront(Dungeon *dungeon, const ivec2 coords, Direction direction);
 
 int GetItemFromTile(Dungeon *dungeon, int x, int y);

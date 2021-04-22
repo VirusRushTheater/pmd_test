@@ -1,5 +1,3 @@
-find_library (OpenGL     REQUIRED)
-
 # Legacy "everything as a submodule way of thinking"
 # PackageOrGit (OpenAL     openal-soft)
 # PackageOrGit (OGG        ogg)
@@ -8,15 +6,11 @@ find_library (OpenGL     REQUIRED)
 # PackageOrGit (SDL2       SDL)
 # PackageOrGit (Vorbis     vorbis)
 
-# Some hardware libraries and codecs
-find_package(OpenAL)
-find_package(OGG)
-find_package(GLEW)
-find_package(GLFW)
-find_package(SDL2)
-find_package(Vorbis)
-
 # Requires iniparser and lodepng
+
+set(LODEPNG_BUILD_C_LIBRARY 1 CACHE BOOL "")
+add_subdirectory (lodepng)
+
 set(INIPARSER_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/iniparser/src/iniparser.h
     ${CMAKE_CURRENT_SOURCE_DIR}/iniparser/src/iniparser.c
